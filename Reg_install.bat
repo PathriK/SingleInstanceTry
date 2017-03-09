@@ -1,0 +1,1 @@
+REG ADD "HKCU\Software\Google\Chrome\NativeMessagingHosts\in.pathri.singleinstance" /ve /t REG_SZ /d "%~dp0\manifest.json" /f

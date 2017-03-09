@@ -1,5 +1,7 @@
 package in.pathri.singleinstance;
 
+import java.io.IOException;
+
 import it.sauronsoftware.junique.AlreadyLockedException;
 import it.sauronsoftware.junique.JUnique;
 import it.sauronsoftware.junique.MessageHandler;
@@ -8,7 +10,19 @@ public class UniqueHandler {
 	static String appId = MyApp.appId;	
 	static MyApp myApp;
 	public static void main(String[] args) {
-		System.out.println("Into Handler" + Thread.currentThread().getId());
+//		System.out.println("Into Handler" + Thread.currentThread().getId());
+//		jniquetry();
+		try {
+			NativeMessagingHelper.log("Into UniqueHandler");
+			String msg = NativeMessagingHelper.readMessage(System.in);
+			NativeMessagingHelper.sendMessage("{\"errorFlag\":false," + "\"message\":\"" + "working" + "\"}");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private static void jniquetry(){
 		boolean alreadyRunning;
 		try {
 			JUnique.acquireLock(appId, new MessageHandler(){
@@ -36,6 +50,6 @@ public class UniqueHandler {
 			System.out.println("App already running" + Thread.currentThread().getId());
 			String retVal = JUnique.sendMessage(appId,"already running");
 			System.out.println("Send message returned" + retVal + Thread.currentThread().getId());
-		}
+		}		
 	}
 }
