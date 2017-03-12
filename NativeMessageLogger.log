@@ -1,3 +1,8 @@
-2017/03/09 17:58:29: Into UniqueHandler
-2017/03/09 17:58:29: The size is 141
-2017/03/09 17:58:29: mandou: {"errorFlag":false,"message":"working"}
+2017/03/12 19:52:31: App NOT already running1
+2017/03/12 19:52:31: mandou: {"errorFlag":true,"message":"Downloader not running"}
+2017/03/12 19:52:39: App NOT already running1
+2017/03/12 19:52:46: App already running1
+2017/03/12 19:52:46: The size is 56
+2017/03/12 19:52:46: Recieved msg::{"song_id":["https://www.google.co.in/"],"album_ids":[]}13
+2017/03/12 19:52:46: JSON val msg::{"song_id":["https:\/\/www.google.co.in\/"],"album_ids":[]}13
+2017/03/12 19:52:46: mandou: {"errorFlag":true,"message":"Request not in correct format"}

@@ -1,5 +1,7 @@
 package in.pathri.singleinstance;
 
+import net.minidev.json.JSONObject;
+
 public class MyApp {
 	public static final String appId = "in.pathri.singleinstance.MyApp";
 	// private Scanner input;
@@ -26,17 +28,24 @@ public class MyApp {
 	}
 
 	public String recieveMessage(String msg) {
-		System.out.println("Recieved msg::" + msg + Thread.currentThread().getId());
+		//System.out.println("Recieved msg::" + msg + Thread.currentThread().getId());
+		NativeMessagingHelper.log("Recieved msg::" + msg + Thread.currentThread().getId());
+		String hasError = "true";
 		try {
 			synchronized (myData) {
 				myData.setMyData(msg);
-				myData.notify();
+				JSONObject val = myData.getMyData();
+				NativeMessagingHelper.log("JSON val msg::" + val.toJSONString() + Thread.currentThread().getId());
+				if(val.containsKey("song_ids") && val.containsKey("album_ids")){
+					hasError = "false";
+					myData.notify();
+				}				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		// this.waitForExit();
-		return "recieved pass";
+		return hasError;
 	}
 
 	// public void waitForExit() {
